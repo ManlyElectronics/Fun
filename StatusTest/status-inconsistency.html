@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Status Inconsistency — мини-опросник</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            max-width: 800px;
+            margin: 24px auto;
+            padding: 0 12px;
+            line-height: 1.4
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 12px 0
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 16px 0;
+            padding: 12px
+        }
+
+        label {
+            display: block;
+            margin: 6px 0 2px
+        }
+
+        select,
+        input[type=range] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .btn {
+            margin-top: 12px;
+            padding: 10px 16px;
+            font-size: 15px;
+            cursor: pointer;
+            background: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px
+        }
+
+        .btn:hover {
+            background: #005fa3
+        }
+
+        .result {
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 16px;
+            background: #f9f9f9
+        }
+
+        .muted {
+            color: #555
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #eee;
+            margin-left: 6px
+        }
+
+        .error {
+            background: #ffe6e6;
+            border-color: #cc0000;
+            color: #cc0000
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Анкета: статус и самооценка</h1>
+
+    <form id="statusForm">
+        <fieldset>
+            <legend><strong>Образование</strong></legend>
+            <label for="education">Наивысший завершённый уровень</label>
+            <select id="education" name="education" required>
+                <option value="" disabled selected>Выберите…</option>
+                <option value="1">Начальное (1–4 классы)</option>
+                <option value="2">Неполное среднее (5–9)</option>
+                <option value="3">Полное среднее (10–11)</option>
+                <option value="4">Среднее проф./колледж</option>
+                <option value="5">Высшее (бакалавр)</option>
+                <option value="6">Высшее (магистр/специалист)</option>
+                <option value="7">Аспирантура/докторская</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend><strong>Доход</strong></legend>
+            <label for="income">Ваш среднемесячный доход (квантиль)</label>
+            <select id="income" name="income" required>
+                <option value="" disabled selected>Выберите…</option>
+                <option value="1">Нижние 25% по стране</option>
+                <option value="2">25–50% (ниже среднего)</option>
+                <option value="3">50–75% (средний)</option>
+                <option value="4">75–90% (выше среднего)</option>
+                <option value="5">90%+ (очень высокий)</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend><strong>Профессия/занятие</strong></legend>
+            <label for="job">Основное занятие</label>
+            <select id="job" name="job" required>
+                <option value="" disabled selected>Выберите…</option>
+                <option value="unemployed">Безработный/вне рабочей силы (оценка 2/10)</option>
+                <option value="laborer">Подсобный рабочий, неквалифицированный труд (оценка 3/10)</option>
+                <option value="service">Сфера услуг/продажи (оценка 4/10)</option>
+                <option value="clerical">Офисный сотрудник/администратор (оценка 5/10)</option>
+                <option value="skilled">Квалифицированный рабочий (слесарь, электрик) (оценка 6/10)</option>
+                <option value="technician">Техник/оператор, ИТ/связь (оценка 7/10)</option>
+                <option value="teacher_nurse">Учитель/медсестра/соцработник (оценка 7/10)</option>
+                <option value="engineer_it">Инженер/разработчик ИТ (оценка 8/10)</option>
+                <option value="manager">Менеджер среднего звена (оценка 8/10)</option>
+                <option value="executive">Топ-менеджер/директор (оценка 9/10)</option>
+                <option value="doctor_lawyer">Врач/юрист/учёный (оценка 9/10)</option>
+                <option value="entrepreneur_small">Предприниматель (мелкий бизнес) (оценка 7/10)</option>
+                <option value="entrepreneur_medium">Предприниматель (средний бизнес) (оценка 8/10)</option>
+                <option value="entrepreneur_large">Предприниматель (крупный бизнес) (оценка 10/10)</option>
+            </select>
+            <p class="muted">Оценка статуса от 1 до 10 баллов.</p>
+        </fieldset>
+
+        <fieldset>
+            <legend><strong>Самооценка</strong></legend>
+            <label for="ladder">Лестница статуса: где вы? (1 низ — 10 верх)</label>
+            <div class="row">
+                <input type="range" id="ladder" name="ladder" min="1" max="10" step="1" value="5"
+                    oninput="document.getElementById('ladderOut').textContent=this.value;">
+                <div><span class="pill">Выбор: <span id="ladderOut">5</span>/10</span></div>
+            </div>
+        </fieldset>
+
+        <button class="btn" type="submit">Посчитать</button>
+    </form>
+
+    <div id="result" style="display:none;"></div>
+
+    <script>
+        // Job scores mapping
+        const jobs = {
+            'unemployed': 2,
+            'laborer': 3,
+            'service': 4,
+            'clerical': 5,
+            'skilled': 6,
+            'technician': 7,
+            'teacher_nurse': 7,
+            'engineer_it': 8,
+            'manager': 8,
+            'executive': 9,
+            'doctor_lawyer': 9,
+            'entrepreneur_small': 7,
+            'entrepreneur_medium': 8,
+            'entrepreneur_large': 10
+        };
+
+        document.getElementById('statusForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const education = parseInt(document.getElementById('education').value);
+            const income = parseInt(document.getElementById('income').value);
+            const jobKey = document.getElementById('job').value;
+            const ladder = parseInt(document.getElementById('ladder').value);
+
+            let errors = [];
+
+            if (!education || education < 1 || education > 7) errors.push('Некорректное образование.');
+            if (!income || income < 1 || income > 5) errors.push('Некорректный доход.');
+            if (!jobKey || !jobs[jobKey]) errors.push('Некорректная профессия.');
+            if (!ladder || ladder < 1 || ladder > 10) errors.push('Некорректная самооценка.');
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+
+            if (errors.length > 0) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '<strong>Ошибка:</strong> ' + errors.join(' ');
+                return;
+            }
+
+            // Normalize to 1-10 scale
+            const edu10 = 1 + (education - 1) * (9 / 6); // 1→1, 7→10
+            const inc10 = 1 + (income - 1) * (9 / 4);    // 1→1, 5→10
+            const job10 = jobs[jobKey];                 // already 1-10
+
+            const objective = Math.round((edu10 + inc10 + job10) / 3 * 10) / 10;
+            const subjective = ladder;
+            const diff = Math.round((subjective - objective) * 10) / 10;
+            const absdiff = Math.abs(diff);
+
+            let level;
+            if (absdiff <= 1.0) level = 'низкая';
+            else if (absdiff <= 2.0) level = 'умеренная';
+            else level = 'высокая';
+
+            let direction;
+            if (diff > 0) direction = 'самооценка выше рассчитанного уровня';
+            else if (diff < 0) direction = 'самооценка ниже рассчитанного уровня';
+            else direction = 'самооценка совпадает с рассчитанным уровнем';
+
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = `
+    <div><strong>Результат</strong></div>
+    <div>Рассчитанный индекс: <strong>${objective}</strong> / 10</div>
+    <div>Самооценка: <strong>${subjective}</strong> / 10</div>
+    <div>Расхождение: <strong>${diff > 0 ? '+' : ''}${diff}</strong> (${direction})</div>
+    <div>Степень несогласованности: <strong>${level}</strong></div>
+    <div class="muted" style="margin-top:8px">Весовые коэффициенты равные. Компоненты усредняются поровну.</div>
+  `;
+        });
+    </script>
+</body>
+
+</html>
