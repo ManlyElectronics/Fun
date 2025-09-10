@@ -1,5 +1,5 @@
-﻿Code,Lable
-MAJOR,GROUP 1: Managers
+﻿Code,Label
+1: Managers
 11,"Chief Executives, Senior"
 111,Legislators and Senior
 1111,Legislators  
@@ -18,7 +18,8 @@ MAJOR,GROUP 1: Managers
 1221,Sales and Marketing
 1222,Advertising and Public
 1223,Research and Development
-13,Production and Specialized
+13,Production and Special8350,Ships' Deck Crews
+9,Elementaryd
 131,Production Managers in
 1311,Agricultural and Forestry
 1312,Aquaculture and Fisheries
@@ -46,8 +47,7 @@ MAJOR,GROUP 1: Managers
 143,Other Services Managers
 1431,"Sports, Recreation and"
 1439,Services Managers Not
-,  
-MAJOR,GROUP 2: Professionals
+2,Professionals
 21,Science and Engineering
 211,Physical and Earth
 2111,Physicists and Astronomers
@@ -173,8 +173,7 @@ MAJOR,GROUP 2: Professionals
 2655,Actors  
 2656,"Announcers on Radio,"
 2659,Creative and Performing
-,  
-MAJOR,GROUP 3: Technicians
+3,Technicians
 31,Science and Engineering
 311,Physical and Engineering
 3111,Chemical and Physical
@@ -284,8 +283,7 @@ MAJOR,GROUP 3: Technicians
 352,Telecommunications and Broadcasting
 3521,Broadcasting and Audiovisual
 3522,Telecommunications Engineering Technicians
-,  
-MAJOR,GROUP 4: Clerical
+4,Clerical
 41,General and Keyboard
 411,General Office Clerks
 4110,General Office Clerks
@@ -327,8 +325,7 @@ MAJOR,GROUP 4: Clerical
 4415,Filing and Copying
 4416,Personnel Clerks 
 4419,Clerical Support Workers
-,  
-MAJOR,GROUP 5: Services
+5,Services
 51,Personal Services Workers
 511,"Travel Attendants, Conductors"
 5111,Travel Attendants and
@@ -386,8 +383,7 @@ MAJOR,GROUP 5: Services
 5413,Prison Guards 
 5414,Security Guards 
 5419,Protective Services Workers
-,  
-MAJOR,GROUP 6: Skilled
+6,Skilled
 61,Market-oriented Skilled Agricultural
 611,Market Gardeners and
 6111,Field Crop and
@@ -418,8 +414,7 @@ MAJOR,GROUP 6: Skilled
 6330,Subsistence Mixed Crop
 634,"Subsistence Fishers, Hunters,"
 6340,"Subsistence Fishers, Hunters,"
-,  
-MAJOR,GROUP 7: Craft
+7,Craft
 71,Building and Related
 711,Building Frame and
 7111,House Builders 
@@ -505,8 +500,7 @@ MAJOR,GROUP 7: Craft
 7543,Product Graders and
 7544,Fumigators and Other
 7549,Craft and Related
-,  
-MAJOR,GROUP 8: Plant
+8,Plant
 81,Stationary Plant and
 811,Mining and Mineral
 8111,Miners and Quarriers
@@ -564,7 +558,7 @@ MAJOR,GROUP 8: Plant
 8344,Lifting Truck Operators
 835,Ships’ Deck Crews
 8350,Ships’ Deck Crews
-,  
+...existing code...
 MAJOR,GROUP 9: Elementary
 91,Cleaners and Helpers
 911,"Domestic, Hotel and"
@@ -616,8 +610,7 @@ MAJOR,GROUP 9: Elementary
 9623,Meter Readers and
 9624,Water and Firewood
 9629,Elementary Workers Not
-,  
-MAJOR,GROUP 0: Armed
+0,Armed
 01,Commissioned Armed Forces
 011,Commissioned Armed Forces
 0110,Commissioned Armed Forces
